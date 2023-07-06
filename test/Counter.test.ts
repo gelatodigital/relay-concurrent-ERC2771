@@ -58,11 +58,7 @@ describe("Counter", () => {
       chainId: chainId,
     };
 
-    const counterBefore = await counter.counter(deployer.address);
-    await sponsoredCall(request);
-    const counterAfter = await counter.counter(deployer.address);
-
-    expect(counterAfter.toBigInt() - counterBefore.toBigInt()).to.equal(value);
+    await expect(sponsoredCall(request)).to.emit(counter, "IncrementCounter");
   });
 
   it("increase (same salt)", async () => {

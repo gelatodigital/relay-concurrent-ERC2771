@@ -39,5 +39,6 @@ contract Counter is EIP712 {
         usedNonces[structHash] = true;
 
         counter[user] += value;
+        emit IncrementCounter(counter[user], user);
     }
 }
