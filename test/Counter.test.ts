@@ -25,6 +25,8 @@ describe("Counter", () => {
     const chainId = await deployer.getChainId();
 
     const value = 5n;
+
+    // implementation should generate/use a random salt
     const salt =
       "0xbf0b2dBA3B9b3d1a145413E0B3BAEcaF9fEfC5A92c3c90CE47da370FD3BFC6Fc";
 
@@ -67,6 +69,8 @@ describe("Counter", () => {
     const chainId = await deployer.getChainId();
 
     const value = 5n;
+
+    // implementation should generate/use a random salt
     const salt =
       "0xbf0b2dBA3B9b3d1a145413E0B3BAEcaF9fEfC5A92c3c90CE47da370FD3BFC6Fc";
 
