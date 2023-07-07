@@ -1,14 +1,14 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { ethers } from "ethers";
 
-export const signIncrease = async (
+export const signIncrement = async (
   signer: SignerWithAddress,
   contract: ethers.Contract,
   name: string,
   value: bigint,
   salt: string,
   chainId: number
-): Promise<ethers.Signature | null> => {
+): Promise<string | null> => {
   const domain: ethers.TypedDataDomain = {
     name: name,
     version: "1",
@@ -17,7 +17,7 @@ export const signIncrease = async (
   };
 
   const types = {
-    Increase: [
+    Increment: [
       { name: "user", type: "address" },
       { name: "value", type: "uint256" },
       { name: "salt", type: "bytes32" },
@@ -31,8 +31,7 @@ export const signIncrease = async (
   };
 
   try {
-    const sig = await signer._signTypedData(domain, types, data);
-    return ethers.utils.splitSignature(sig);
+    return await signer._signTypedData(domain, types, data);
   } catch (e) {
     return null;
   }

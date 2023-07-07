@@ -2,7 +2,7 @@ import { SponsoredCallRequest } from "@gelatonetwork/relay-sdk";
 import { sponsoredCall } from "../src/__mock__/relay-sdk";
 import { deployments, ethers } from "hardhat";
 import { Counter } from "../typechain";
-import { signIncrease } from "../src/signature";
+import { signIncrement } from "../src/signature";
 import { expect } from "chai";
 
 describe("Counter", () => {
@@ -19,7 +19,7 @@ describe("Counter", () => {
     )) as Counter;
   });
 
-  it("increase", async () => {
+  it("increment", async () => {
     const [deployer] = await ethers.getSigners();
 
     const chainId = await deployer.getChainId();
@@ -30,7 +30,7 @@ describe("Counter", () => {
     const salt =
       "0xbf0b2dBA3B9b3d1a145413E0B3BAEcaF9fEfC5A92c3c90CE47da370FD3BFC6Fc";
 
-    const sig = await signIncrease(
+    const sig = await signIncrement(
       deployer,
       counter,
       "Counter",
@@ -41,15 +41,11 @@ describe("Counter", () => {
 
     if (!sig) throw new Error("Invalid signature");
 
-    const { v, r, s } = sig;
-
-    const { data } = await counter.populateTransaction.increase(
+    const { data } = await counter.populateTransaction.increment(
       deployer.address,
       value,
       salt,
-      v,
-      r,
-      s
+      sig
     );
 
     if (!data) throw new Error("Invalid transaction");
@@ -63,7 +59,7 @@ describe("Counter", () => {
     await expect(sponsoredCall(request)).to.emit(counter, "IncrementCounter");
   });
 
-  it("increase (same salt)", async () => {
+  it("increment (same salt)", async () => {
     const [deployer] = await ethers.getSigners();
 
     const chainId = await deployer.getChainId();
@@ -74,7 +70,7 @@ describe("Counter", () => {
     const salt =
       "0xbf0b2dBA3B9b3d1a145413E0B3BAEcaF9fEfC5A92c3c90CE47da370FD3BFC6Fc";
 
-    const sig = await signIncrease(
+    const sig = await signIncrement(
       deployer,
       counter,
       "Counter",
@@ -85,15 +81,11 @@ describe("Counter", () => {
 
     if (!sig) throw new Error("Invalid signature");
 
-    const { v, r, s } = sig;
-
-    const { data } = await counter.populateTransaction.increase(
+    const { data } = await counter.populateTransaction.increment(
       deployer.address,
       value,
       salt,
-      v,
-      r,
-      s
+      sig
     );
 
     if (!data) throw new Error("Invalid transaction");
@@ -105,7 +97,7 @@ describe("Counter", () => {
     };
 
     await expect(sponsoredCall(request)).to.be.revertedWith(
-      "Counter.increase: nonce already used"
+      "Counter._requireSignature: nonce already used"
     );
   });
 });

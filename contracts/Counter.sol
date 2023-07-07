@@ -5,8 +5,13 @@ import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 
 contract Counter is EIP712 {
-    bytes32 private constant _INCREASE_TYPEHASH =
-        keccak256("Increase(address user,uint256 value,bytes32 salt)");
+    //solhint-disable-next-line const-name-snakecase
+    string public constant name = "Counter";
+    //solhint-disable-next-line const-name-snakecase
+    string public constant version = "1";
+
+    bytes32 public constant INCREASE_TYPEHASH =
+        keccak256("Increment(address user,uint256 value,bytes32 salt)");
 
     mapping(address => uint256) public counter;
     mapping(bytes32 => bool) public usedNonces;
@@ -14,31 +19,44 @@ contract Counter is EIP712 {
     event IncrementCounter(uint256 newCounterValue, address msgSender);
 
     // solhint-disable-next-line no-empty-blocks
-    constructor() EIP712("Counter", "1") {}
+    constructor() EIP712(name, version) {}
 
-    function increase(
+    function increment(
         address user,
         uint256 value,
         bytes32 salt,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
+        bytes memory sig
     ) external {
-        bytes32 structHash = keccak256(
-            abi.encode(_INCREASE_TYPEHASH, user, value, salt)
+        address signer = _requireSignature(
+            INCREASE_TYPEHASH,
+            abi.encode(user, value),
+            salt,
+            sig
         );
-        bytes32 eip712Hash = _hashTypedDataV4(structHash);
 
-        address signer = ECDSA.recover(eip712Hash, v, r, s);
-        require(signer == user, "Counter.increase: invalid signer");
-
-        require(
-            !usedNonces[structHash],
-            "Counter.increase: nonce already used"
-        );
-        usedNonces[structHash] = true;
+        require(signer == user, "Counter.increment: invalid signer");
 
         counter[user] += value;
         emit IncrementCounter(counter[user], user);
+    }
+
+    function _requireSignature(
+        bytes32 typeHash,
+        bytes memory data,
+        bytes32 salt,
+        bytes memory sig
+    ) internal returns (address) {
+        bytes32 structHash = keccak256(abi.encodePacked(typeHash, data, salt));
+
+        require(
+            !usedNonces[structHash],
+            "Counter._requireSignature: nonce already used"
+        );
+        usedNonces[structHash] = true;
+
+        bytes32 eip712Hash = _hashTypedDataV4(structHash);
+        address signer = ECDSA.recover(eip712Hash, sig);
+
+        return signer;
     }
 }
