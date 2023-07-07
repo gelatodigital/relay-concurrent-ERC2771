@@ -10,7 +10,7 @@ contract Counter is EIP712 {
     //solhint-disable-next-line const-name-snakecase
     string public constant version = "1";
 
-    bytes32 public constant INCREASE_TYPEHASH =
+    bytes32 public constant INCREMENT_TYPEHASH =
         keccak256("Increment(address user,uint256 value,bytes32 salt)");
 
     mapping(address => uint256) public counter;
@@ -28,7 +28,7 @@ contract Counter is EIP712 {
         bytes memory sig
     ) external {
         address signer = _requireSignature(
-            INCREASE_TYPEHASH,
+            INCREMENT_TYPEHASH,
             abi.encode(user, value),
             salt,
             sig
