@@ -16,7 +16,7 @@ const main = async () => {
   const counter = (await ethers.getContractAt(
     "Counter1Balance",
     address
-  )) as any as Counter1Balance;
+  )) as unknown as Counter1Balance;
 
   const increment = await counter.increment.populateTransaction();
 
