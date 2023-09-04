@@ -1,6 +1,6 @@
 # Relay Concurrent ERC-2771
 
-This project showcases concurrent `ERC-2771` support which enables parallel transaction submission.  
+This project showcases [concurrent ERC-2771](https://docs.gelato.network/~/changes/hwnt3OxZ96fxD9w94SvH/developer-services/relay/erc-2771-recommended/callwithsyncfeeerc2771#sending-a-request) support which enables parallel transaction submission.  
 This is a new addition to Gelato Relay which uses **salts** rather than **sequential nonces** for replay protection.
 
 ## Self-Paying (Synchronous Fee Payment)
@@ -12,8 +12,8 @@ Since both concurrent and sequential transactions are supported, the caller may 
 
 | Type | Implementation | Description |
 | -------- | ------- | -------- |
-| Contract | [`Counter.sol`]() | Supports both concurrent and sequential relay requests |
-| Script | [`increment.ts`]() | Executes three `increment` transactions concurrently |
+| Contract | [`Counter.sol`](https://github.com/gelatodigital/relay-concurrent-ERC2771/blob/main/contracts/Counter.sol) | Supports both concurrent and sequential relay requests |
+| Script | [`increment.ts`](https://github.com/gelatodigital/relay-concurrent-ERC2771/blob/main/scripts/increment.ts) | Executes three `increment` transactions concurrently |
 
 ### Quick Start
 1. Install dependencies
@@ -45,15 +45,15 @@ Below are its addresses on all supported networks:
 
 | Contract | Network | Address |
 | -------- | ------- | ------- |
-| `GelatoRelayConcurrentERC2771` | All networks except zkSync Era | `0x8598806401A63Ddf52473F1B3C55bC9E33e2d73b` |
+| `GelatoRelayConcurrentERC2771` | All supported networks except zkSync Era | `0x8598806401A63Ddf52473F1B3C55bC9E33e2d73b` |
 | `GelatoRelayConcurrentERC2771` | zkSync Era Mainnet/Testnet | `0xBa4082F4961c8Fb76231995C967CD9aa40f321b5` |
 
 ### Implementation
 
 | Type | Implementation | Description |
 | -------- | ------- | -------- |
-| Contract | [`Counter1Balance.sol`]() | Supports concurrent relay requests through a single trusted forwarder |
-| Script | [`increment-1balance.ts`]() | Executes three `increment` transactions concurrently |
+| Contract | [`Counter1Balance.sol`](https://github.com/gelatodigital/relay-concurrent-ERC2771/blob/main/contracts/Counter1Balance.sol) | Supports concurrent relay requests through a single trusted forwarder |
+| Script | [`increment-1balance.ts`](https://github.com/gelatodigital/relay-concurrent-ERC2771/blob/main/scripts/increment-1balance.ts) | Executes three `increment` transactions concurrently |
 
 ### Quick Start
 1. Install dependencies
