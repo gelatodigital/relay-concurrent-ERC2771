@@ -1,50 +1,78 @@
-# Relay Hash-based ERC2771
+# Relay Concurrent ERC-2771
 
-The Relay `ERC2771` implementation uses nonces which enforce sequential inclusion and lack the ability to handle parallel transactions.
-This project demonstrates signature verification and **hash-based replay protection** on an example [`Counter`](https://github.com/gelatodigital/relay-hash-based-ERC2771/blob/main/contracts/Counter.sol) contract using [`EIP-712`](https://eips.ethereum.org/EIPS/eip-712).
-This acts as an alternative and enables the execution of multiple transactions in parallel.
+This project showcases concurrent `ERC-2771` support which enables parallel transaction submission.  
+This is a new addition to Gelato Relay which uses **salts** rather than **sequential nonces** for replay protection.
 
-```solidity
-function _requireSignature(
-    bytes32 typeHash,
-    bytes memory data,
-    bytes32 salt,
-    bytes memory sig
-) internal returns (address) {
-    bytes32 structHash = keccak256(abi.encodePacked(typeHash, data, salt));
+## Self-Paying (Synchronous Fee Payment)
 
-    require(
-        !usedNonces[structHash],
-        "Counter._requireSignature: nonce already used"
-    );
-    usedNonces[structHash] = true;
+Existing contracts inheriting from `GelatoRelayContextERC2771` require no changes other than updating `@gelatonetwork/relay-context` and re-deploying.
+Since both concurrent and sequential transactions are supported, the caller may decide which to use dynamically during submission.
 
-    bytes32 eip712Hash = _hashTypedDataV4(structHash);
-    address signer = ECDSA.recover(eip712Hash, sig);
+### Implementation
 
-    return signer;
-}
-```
-`_requireSignature` recovers the signer from a payload and consumes a nonce.
-Notably, the nonce is a hash of the signed data including a salt rather than an incrementing integer.
-Consuming the nonce thus consists of marking it as used in a mapping of nonces rather than incrementing it.
-This decouples signed transactions from any sequential ordering and allows them to be signed off-chain and executed on-chain in parallel.
+| Type | Implementation | Description |
+| -------- | ------- | -------- |
+| Contract | [`Counter.sol`]() | Supports both concurrent and sequential relay requests |
+| Script | [`increment.ts`]() | Executes three `increment` transactions concurrently |
 
-## Implementation
-
-The [Unit Tests](https://github.com/gelatodigital/relay-hash-based-ERC2771/blob/main/test/Counter.test.ts) demonstrate [signing](https://github.com/gelatodigital/relay-hash-based-ERC2771/blob/main/src/signature.ts)
-an `increment` transaction and relaying it using [`sponsoredCall`](https://docs.gelato.network/developer-services/relay/non-erc-2771/sponsoredcall).
-
-> **Warning**  
-> The example hardcodes the salt to demonstrate collisions.  
-> Ensure that your implementation generates a random salt for each transaction.
-
-## Quick Start
+### Quick Start
 1. Install dependencies
    ```
    yarn install
    ```
-2. Run unit tests
+2. Edit ``.env``
    ```
-   yarn hardhat test
+   cp .env.example .env
+   ```
+3. Deploy the `Counter` contract
+   ```
+   yarn hardhat deploy --tags Counter --network mumbai
+   ```
+4. Deposit `ETH` into the `Counter` contract
+5. Verify contract on etherscan (Optional)
+   ```
+   yarn hardhat etherscan-verify --network mumbai
+   ```
+6. Increment the counter
+   ```
+   yarn hardhat run scripts/increment.ts --network mumbai
+   ```
+
+## Sponsored (1Balance)
+
+Contracts inheriting from `ERC2771Context` rather than `GelatoRelayContextERC2771` must specify `GelatoRelayConcurrentERC2771` as a trusted forwarder.
+Below are its addresses on all supported networks:
+
+| Contract | Network | Address |
+| -------- | ------- | ------- |
+| `GelatoRelayConcurrentERC2771` | All networks except zkSync Era | `0x8598806401A63Ddf52473F1B3C55bC9E33e2d73b` |
+| `GelatoRelayConcurrentERC2771` | zkSync Era Mainnet/Testnet | `0xBa4082F4961c8Fb76231995C967CD9aa40f321b5` |
+
+### Implementation
+
+| Type | Implementation | Description |
+| -------- | ------- | -------- |
+| Contract | [`Counter1Balance.sol`]() | Supports concurrent relay requests through a single trusted forwarder |
+| Script | [`increment-1balance.ts`]() | Executes three `increment` transactions concurrently |
+
+### Quick Start
+1. Install dependencies
+   ```
+   yarn install
+   ```
+2. Edit ``.env``
+   ```
+   cp .env.example .env
+   ```
+3. Deploy the `Counter1Balance` contract
+   ```
+   yarn hardhat deploy --tags Counter1Balance --network mumbai
+   ```
+4. Verify contract on etherscan (Optional)
+    ```
+    yarn hardhat etherscan-verify --network mumbai
+    ```
+5. Increment the counter
+   ```
+   yarn hardhat run scripts/increment-1balance.ts --network mumbai
    ```
