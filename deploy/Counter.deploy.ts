@@ -7,6 +7,7 @@ const func: DeployFunction = async () => {
 
   await deploy("Counter", {
     from: deployer,
+    log: true,
   });
 };
 
