@@ -1,12 +1,11 @@
-import { deployments, getNamedAccounts } from "hardhat";
+import { deployments, ethers } from "hardhat";
 import { DeployFunction } from "hardhat-deploy/types";
 
 const func: DeployFunction = async () => {
-  const { deploy } = deployments;
-  const { deployer } = await getNamedAccounts();
+  const [deployer] = await ethers.getSigners();
 
-  await deploy("Counter", {
-    from: deployer,
+  await deployments.deploy("Counter", {
+    from: deployer.address,
     log: true,
   });
 };

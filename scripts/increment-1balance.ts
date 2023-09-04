@@ -1,30 +1,30 @@
 import { deployments, ethers } from "hardhat";
-import { Counter } from "../typechain";
+import { Counter1Balance } from "../typechain";
 import {
-  CallWithSyncFeeConcurrentERC2771Request,
+  CallWithConcurrentERC2771Request,
   GelatoRelay,
 } from "@gelatonetwork/relay-sdk";
 
-const NATIVE_TOKEN = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-
 const main = async () => {
+  const SPONSOR_KEY = process.env.SPONSOR_KEY;
+  if (!SPONSOR_KEY) throw new Error("SPONSOR_KEY missing in .env");
+
   const [signer] = await ethers.getSigners();
   const { chainId } = await ethers.provider.getNetwork();
 
-  const { address } = await deployments.get("Counter");
+  const { address } = await deployments.get("Counter1Balance");
   const counter = (await ethers.getContractAt(
-    "Counter",
+    "Counter1Balance",
     address
-  )) as any as Counter;
+  )) as any as Counter1Balance;
 
   const increment = await counter.increment.populateTransaction();
 
-  const request: CallWithSyncFeeConcurrentERC2771Request = {
+  const request: CallWithConcurrentERC2771Request = {
     chainId: chainId,
     target: address,
     data: increment.data,
     user: signer.address,
-    feeToken: NATIVE_TOKEN,
     isConcurrent: true,
   };
 
@@ -32,9 +32,10 @@ const main = async () => {
 
   // execute 3 transactions concurrently
   for (let i = 0; i < 3; i++) {
-    const { taskId } = await relay.callWithSyncFeeERC2771(
+    const { taskId } = await relay.sponsoredCallERC2771(
       request,
-      signer as any
+      signer as any,
+      SPONSOR_KEY
     );
     console.log("https://api.gelato.digital/tasks/status/" + taskId);
   }

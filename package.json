@@ -22,6 +22,7 @@
     "@gelatonetwork/relay-context": "3.1.1",
     "@gelatonetwork/relay-sdk": "5.2.0",
     "@nomicfoundation/hardhat-ethers": "3.0.4",
+    "@openzeppelin/contracts": "4.9.3",
     "@tsconfig/recommended": "1.0.2",
     "@typechain/ethers-v6": "0.5.0",
     "@typechain/hardhat": "9.0.0",

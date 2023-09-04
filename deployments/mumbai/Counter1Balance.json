@@ -1,0 +1,159 @@
+{
+  "address": "0x9cA5D0dE520C50243979e4b853C64B092F61F75d",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_trustedForwarder",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newCounterValue",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "msgSender",
+          "type": "address"
+        }
+      ],
+      "name": "IncrementCounter",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "counter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "increment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "forwarder",
+          "type": "address"
+        }
+      ],
+      "name": "isTrustedForwarder",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xa842419b941a8f5a01f873e96ad9e7c98f9040f86491f5d09ff86f6d108b0fac",
+  "receipt": {
+    "to": null,
+    "from": "0x92e94967A976610D27267273935De71B791f0037",
+    "contractAddress": "0x9cA5D0dE520C50243979e4b853C64B092F61F75d",
+    "transactionIndex": 19,
+    "gasUsed": "210867",
+    "logsBloom": "0x00000000000000000000000080000000000000000000000000000000020000000000000002000000000000000000000000008000000000000000000000000000000000000000000000000000000000800000000000000000000100000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000004000000000000000000001000000000000000000000000200008100000000000000000000000000080000000000000000000000000000000000000000000100000",
+    "blockHash": "0x5102529b9bad49290815b33071b17800fc5ae32c0d1d69f05c9acfeae7c43c6d",
+    "transactionHash": "0xa842419b941a8f5a01f873e96ad9e7c98f9040f86491f5d09ff86f6d108b0fac",
+    "logs": [
+      {
+        "transactionIndex": 19,
+        "blockNumber": 39742613,
+        "transactionHash": "0xa842419b941a8f5a01f873e96ad9e7c98f9040f86491f5d09ff86f6d108b0fac",
+        "address": "0x0000000000000000000000000000000000001010",
+        "topics": [
+          "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63",
+          "0x0000000000000000000000000000000000000000000000000000000000001010",
+          "0x00000000000000000000000092e94967a976610d27267273935de71b791f0037",
+          "0x0000000000000000000000005082f249cdb2f2c1ee035e4f423c46ea2dab3ab1"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000011fac72f1dd0000000000000000000000000000000000000000000000000055da80e71f3756fa0000000000000000000000000000000000000000000000c397eaa2967c9e928900000000000000000000000000000000000000000000000055d9613aac4579fa0000000000000000000000000000000000000000000000c397ebc242ef906f89",
+        "logIndex": 90,
+        "blockHash": "0x5102529b9bad49290815b33071b17800fc5ae32c0d1d69f05c9acfeae7c43c6d"
+      }
+    ],
+    "blockNumber": 39742613,
+    "cumulativeGasUsed": "7260181",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": ["0x8598806401A63Ddf52473F1B3C55bC9E33e2d73b"],
+  "numDeployments": 2,
+  "solcInputHash": "1a4380fe0fcff51c58f060616a3e2808",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_trustedForwarder\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCounterValue\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"msgSender\",\"type\":\"address\"}],\"name\":\"IncrementCounter\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"counter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"increment\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"}],\"name\":\"isTrustedForwarder\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Counter1Balance.sol\":\"Counter1Balance\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/metatx/ERC2771Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.3) (metatx/ERC2771Context.sol)\\n\\npragma solidity ^0.8.9;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Context variant with ERC2771 support.\\n */\\nabstract contract ERC2771Context is Context {\\n    /// @custom:oz-upgrades-unsafe-allow state-variable-immutable\\n    address private immutable _trustedForwarder;\\n\\n    /// @custom:oz-upgrades-unsafe-allow constructor\\n    constructor(address trustedForwarder) {\\n        _trustedForwarder = trustedForwarder;\\n    }\\n\\n    function isTrustedForwarder(address forwarder) public view virtual returns (bool) {\\n        return forwarder == _trustedForwarder;\\n    }\\n\\n    function _msgSender() internal view virtual override returns (address sender) {\\n        if (isTrustedForwarder(msg.sender) && msg.data.length >= 20) {\\n            // The assembly code is more direct than the Solidity version using `abi.decode`.\\n            /// @solidity memory-safe-assembly\\n            assembly {\\n                sender := shr(96, calldataload(sub(calldatasize(), 20)))\\n            }\\n        } else {\\n            return super._msgSender();\\n        }\\n    }\\n\\n    function _msgData() internal view virtual override returns (bytes calldata) {\\n        if (isTrustedForwarder(msg.sender) && msg.data.length >= 20) {\\n            return msg.data[:msg.data.length - 20];\\n        } else {\\n            return super._msgData();\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x5e8c266715f6454b732e6c12a85f75dcf3b1c298a90830bb56bfda29fa5b6264\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n}\\n\",\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\"},\"contracts/Counter1Balance.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.8.21;\\n\\nimport {ERC2771Context} from \\\"@openzeppelin/contracts/metatx/ERC2771Context.sol\\\";\\n\\ncontract Counter1Balance is ERC2771Context {\\n    mapping(address => uint256) public counter;\\n\\n    event IncrementCounter(uint256 newCounterValue, address msgSender);\\n\\n    // solhint-disable-next-line no-empty-blocks\\n    constructor(address _trustedForwarder) ERC2771Context(_trustedForwarder) {}\\n\\n    function increment() external {\\n        address sender = _msgSender();\\n        counter[sender]++;\\n        emit IncrementCounter(counter[sender], sender);\\n    }\\n}\\n\",\"keccak256\":\"0xbde1ad4890d895b02500e43c4bcb0075971b8fd1d51b9fcf564fdfefc3c2f2ad\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b5060405161036538038061036583398101604081905261002f91610040565b6001600160a01b0316608052610070565b60006020828403121561005257600080fd5b81516001600160a01b038116811461006957600080fd5b9392505050565b6080516102d4610091600039600081816056015261018901526102d46000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063572b6c0514610046578063c12327b8146100a8578063d09de08a146100d6575b600080fd5b610093610054366004610202565b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff90811691161490565b60405190151581526020015b60405180910390f35b6100c86100b6366004610202565b60006020819052908152604090205481565b60405190815260200161009f565b6100de6100e0565b005b60006100ea610185565b73ffffffffffffffffffffffffffffffffffffffff8116600090815260208190526040812080549293509061011e8361023f565b909155505073ffffffffffffffffffffffffffffffffffffffff811660008181526020818152604091829020548251908152908101929092527fd26752d6efe11773b4a85cdfa0b3fe9efa9707bd50024c7beaed659a141f7858910160405180910390a150565b60007f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16331480156101cd575060143610155b156101fd57507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffec36013560601c90565b503390565b60006020828403121561021457600080fd5b813573ffffffffffffffffffffffffffffffffffffffff8116811461023857600080fd5b9392505050565b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8203610297577f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b506001019056fea26469706673582212208afe2392272b0de3b5a9ed3b24273587f3a8b2ec3d785f7d5c8dcea1601e6f3c64736f6c63430008150033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063572b6c0514610046578063c12327b8146100a8578063d09de08a146100d6575b600080fd5b610093610054366004610202565b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff90811691161490565b60405190151581526020015b60405180910390f35b6100c86100b6366004610202565b60006020819052908152604090205481565b60405190815260200161009f565b6100de6100e0565b005b60006100ea610185565b73ffffffffffffffffffffffffffffffffffffffff8116600090815260208190526040812080549293509061011e8361023f565b909155505073ffffffffffffffffffffffffffffffffffffffff811660008181526020818152604091829020548251908152908101929092527fd26752d6efe11773b4a85cdfa0b3fe9efa9707bd50024c7beaed659a141f7858910160405180910390a150565b60007f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16331480156101cd575060143610155b156101fd57507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffec36013560601c90565b503390565b60006020828403121561021457600080fd5b813573ffffffffffffffffffffffffffffffffffffffff8116811461023857600080fd5b9392505050565b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8203610297577f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b506001019056fea26469706673582212208afe2392272b0de3b5a9ed3b24273587f3a8b2ec3d785f7d5c8dcea1601e6f3c64736f6c63430008150033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1484,
+        "contract": "contracts/Counter1Balance.sol:Counter1Balance",
+        "label": "counter",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_uint256)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
